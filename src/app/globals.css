@@ -1,0 +1,66 @@
+/* Styles color */
+
+:root {
+  --bg: white;
+  --textColor: black;
+  --softBg: #f0f0f0;
+  --sofTextColor: #626262;
+}
+
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: var(--textColor);
+  font-size: 1.6rem;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.container {
+  height: 100vh;
+  background: var(--bg);
+  color: var(--textColor);
+}
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  padding-inline: 2rem;
+
+  /* Para tablets y Landascape */
+  @media (width>= 768px) {
+    max-width: 80rem;
+    padding-inline: 2rem;
+  }
+
+  /* Para desktops y pantallas medianas */
+  @media (width>= 1024px) {
+    max-width: 120rem;
+    padding-inline: 4rem;
+  }
+
+  /* Para pantallas grandes */
+  @media (width>= 1440px) {
+    max-width: 144rem;
+    padding-inline: 8rem;
+  }
+
+  /* Para pantallas extra grandes como 4K */
+  @media (width>= 2560px) {
+    max-width: 200rem;
+    padding-inline: 10rem;
+  }
+}
