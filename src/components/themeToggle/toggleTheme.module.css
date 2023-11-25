@@ -1,0 +1,19 @@
+.container {
+	width: 4rem;
+	height: 2rem;
+	display: flex;
+	border-radius: 5rem;
+	cursor: pointer;
+	align-items: center;
+	justify-content: space-between;
+	 position: relative;
+}
+
+.ball {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	transition: all 0.3s ease-in-out;
+    position: absolute;
+   
+}

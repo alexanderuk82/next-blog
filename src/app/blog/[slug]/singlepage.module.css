@@ -1,0 +1,74 @@
+.container {
+	margin-top: 5rem;
+}
+
+.infoContainer {
+	display: flex;
+
+	gap: 5rem;
+}
+
+.textContainer,
+.imgContainer {
+	flex: 1;
+}
+
+.title {
+	font-size: 6.4rem;
+	margin-bottom: 5rem;
+}
+
+.imgContainer {
+	height: 35rem;
+	position: relative;
+
+	& .img {
+		object-fit: cover;
+		position: absolute;
+	}
+}
+.userImageContainer {
+	width: 5rem;
+	height: 5rem;
+	position: relative;
+
+	& .userImage {
+		object-fit: cover;
+		position: absolute;
+		border-radius: 10rem;
+	}
+}
+
+.user {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+
+	& .userTextContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		& .username {
+			font-weight: 600;
+		}
+	}
+}
+
+.content {
+	margin-top: 6rem;
+	display: flex;
+	gap: 5rem;
+}
+.post {
+	flex: 5;
+}
+
+.desc {
+	font-size: 2rem;
+	font-weight: 300;
+}
+
+.desc > p {
+	margin-bottom: 2rem;
+}

@@ -1,0 +1,12 @@
+.content {
+	display: flex;
+	gap: 5rem;
+}
+.title{
+    background-color: coral;
+    color: white;
+    padding: .5rem 1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+
+}
