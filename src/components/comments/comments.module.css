@@ -1,0 +1,58 @@
+.title {
+	color: var(--softTextColor);
+	margin-bottom: 3rem;
+}
+
+.commentContainer {
+	display: flex;
+	gap: 3rem;
+	align-items: center;
+
+	.textarea {
+		flex: 2;
+		padding: 2rem;
+		border: 1px solid var(--softTextColor);
+		border-radius: 4px;
+		resize: vertical; /* restricts resizing to vertical only */
+	}
+
+	& .button {
+		padding: 1.6rem 2rem;
+		color: white;
+		font-weight: bold;
+		border: none;
+		border-radius: 0.5rem;
+		background-color: teal;
+	}
+}
+
+.comments {
+	margin-top: 4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+.comment {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.user {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+	& .userImage {
+		border-radius: 10rem;
+	}
+}
+
+.userTextContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	& .username {
+		font-weight: 600;
+	}
+}

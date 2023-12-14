@@ -71,4 +71,33 @@
 
 .desc > p {
 	margin-bottom: 2rem;
+	font-size: 1.6rem;
+}
+
+@media screen and (max-width: 1536px) {
+	.title {
+		font-size: 5.4rem;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.title {
+		font-size: 4.8rem;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.imgContainer {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.title {
+		font-size: 3.6rem;
+	}
+
+	.desc > .subtitle {
+		font-size: 2.4rem;
+		padding-bottom: 2.3rem;
+	}
 }

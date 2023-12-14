@@ -3,6 +3,8 @@
 import Link from "next/link";
 import authlinksStyles from "./authlinks.module.css";
 import { useState } from "react";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const AuthLinks = () => {
 	// State for Menu burger mobile
@@ -11,16 +13,22 @@ const AuthLinks = () => {
 
 	//Temporary
 
-	const status = "notauthenticated";
+	const { status } = useSession();
 
 	return (
 		<>
-			{status === "notauthenticated" ? (
-				<Link className={authlinksStyles.linkStatus} href="/login">Login</Link>
+			{status === "unauthenticated" ? (
+				<Link className={authlinksStyles.linkStatus} href="/login">
+					Login
+				</Link>
 			) : (
 				<>
-					<Link className={authlinksStyles.linkStatus} href="/write">Write</Link>
-					<span className={authlinksStyles.logout}>Logout</span>
+					<Link className={authlinksStyles.linkStatus} href="/write">
+						Write
+					</Link>
+					<span className={authlinksStyles.logout} onClick={signOut}>
+						Logout
+					</span>
 				</>
 			)}
 			<div className={authlinksStyles.burger} onClick={() => setOpen(!open)}>
@@ -40,12 +48,16 @@ const AuthLinks = () => {
 						about
 					</Link>
 
-					{status === "notauthenticated" ? (
+					{status === "unauthenticated" ? (
 						<Link href="/login">Login</Link>
 					) : (
 						<>
-							<Link href="/write">Write</Link>
-							<span className={authlinksStyles.logout}>Logout</span>
+							<Link href="/write" className={authlinksStyles.link}>
+								Write
+							</Link>
+							<Link className={authlinksStyles.link} onClick={signOut}>
+								Logout
+							</Link>
 						</>
 					)}
 				</div>

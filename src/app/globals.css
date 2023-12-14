@@ -47,6 +47,16 @@ a {
 	background: var(--bg);
 	color: var(--textColor);
 }
+
+/* Editor text area QUILL library*/
+
+.ql-container {
+	font-size: 2.8rem !important;
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before {
+	color: #b3b3b1;
+}
 .wrapper {
 	max-width: 100%;
 	margin: 0 auto;
