@@ -49,6 +49,14 @@ model User {
   Comment       Comment[]
 }
 
+
+model Category {
+  id    String  @id @default(cuid()) @map("_id")
+  slug  String  @unique
+  title String
+  img   String?
+  Posts Post[]
+}
 model Post {
   id        String    @id @default(cuid()) @map("_id")
   createdAt DateTime  @default(now())
@@ -63,13 +71,6 @@ model Post {
   user      User      @relation(fields: [userEmail], references: [email])
   comments  Comment[]
 }
-model Category {
-  id    String  @id @default(cuid()) @map("_id")
-  slug  String  @unique
-  title String
-  img   String?
-  Posts Post[]
-}
 
 model Comment {
   id        String   @id @default(cuid()) @map("_id")
@@ -81,6 +82,7 @@ model Comment {
   post      Post     @relation(fields: [postSlug], references: [slug])
 }
 
+
 model VerificationToken {
   identifier String   @id @map("_id")
   token      String   @unique
@@ -88,4 +90,3 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-
