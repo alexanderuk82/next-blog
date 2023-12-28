@@ -2,11 +2,11 @@
 	display: flex;
 	gap: 5rem;
 }
-.title{
-    background-color: coral;
-    color: white;
-    padding: .5rem 1rem;
-    text-align: center;
-    margin-bottom: 3rem;
-
+.title {
+	background-color: coral;
+	color: white;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	margin-bottom: 3rem;
+	text-transform: capitalize;
 }

@@ -12,3 +12,17 @@
 	color: white;
 	cursor: pointer;
 }
+.buttonDisabled {
+	width: 10rem;
+	border: none;
+	padding: 1.6rem;
+	background-color: crimson;
+	color: white;
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.button:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}

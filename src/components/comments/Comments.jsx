@@ -1,19 +1,47 @@
+"use client";
 import styles from "./comments.module.css";
-
 import Link from "next/link";
 import Image from "next/image";
-export const Comments = () => {
-	const status = "aunthenicated";
+import useSWR from "swr";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import formatDate from "@/utils/date";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export const Comments = ({ postSlug }) => {
+	const { status } = useSession();
+	const { data, mutate, isLoading, error } = useSWR(
+		`http://localhost:3000/api/comments?postSlug=${postSlug}`,
+		fetcher
+	);
+	const [desc, setDesc] = useState("");
+
+	// Remove the unnecessary import statement for React
+
+	const handleSubmit = async () => {
+		await fetch("/api/comments", {
+			method: "POST",
+			body: JSON.stringify({ desc, postSlug }),
+		});
+		mutate();
+	};
+
+	if (error) return <div>Failed to load comments</div>;
+
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.title}>Comments</h1>
-			{status === "aunthenicated" ? (
+			{status === "authenticated" ? (
 				<div className={styles.commentContainer}>
 					<textarea
 						className={styles.textarea}
 						placeholder="Write a comment..."
+						onChange={(e) => setDesc(e.target.value)}
 					/>
-					<button className={styles.button}>Send</button>
+					<button onClick={handleSubmit} className={styles.button}>
+						Send
+					</button>
 				</div>
 			) : (
 				<div className={styles.loginContainer}>
@@ -25,56 +53,38 @@ export const Comments = () => {
 			)}
 
 			<div className={styles.comments}>
-				<div className={styles.comment}>
-					<div className={styles.user}>
-						<div className={styles.userImageContainer}>
-							<Image
-								src="/p1.jpeg"
-								alt="Picture of the author"
-								className={styles.userImage}
-								height={50}
-								width={50}
-							/>
-						</div>
-						<div className={styles.userTextContainer}>
-							<span className={styles.username}>John Doe</span>
-							<span className={styles.date}>01.01.2024</span>
-						</div>
+				{isLoading ? (
+					"Loading"
+				) : (
+					<div className={styles.comments}>
+						{isLoading
+							? "loading"
+							: data?.map((item) => (
+									<div className={styles.comment} key={item._id}>
+										<div className={styles.user}>
+											{item?.user?.image && (
+												<Image
+													src={item.user.image}
+													alt=""
+													width={50}
+													height={50}
+													className={styles.image}
+												/>
+											)}
+											<div className={styles.userInfo}>
+												<span className={styles.username}>
+													{item.user.name} -
+												</span>
+												<span className={styles.date}>
+													 🗓️ {formatDate(item.createdAt)}
+												</span>
+											</div>
+										</div>
+										<p className={styles.desc}>{item.desc}</p>
+									</div>
+							  ))}
 					</div>
-					<div className={styles.desc}>
-						<p>
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-							Mollitia, quaerat. Natus commodi exercitationem iure sunt quod
-							voluptate eius esse saepe libero. Alias, amet beatae enim minus
-							est et non ut.
-						</p>
-					</div>
-				</div>
-				<div className={styles.comment}>
-					<div className={styles.user}>
-						<div className={styles.userImageContainer}>
-							<Image
-								src="/p1.jpeg"
-								alt="Picture of the author"
-								className={styles.userImage}
-								height={50}
-								width={50}
-							/>
-						</div>
-						<div className={styles.userTextContainer}>
-							<span className={styles.username}>John Doe</span>
-							<span className={styles.date}>01.01.2024</span>
-						</div>
-					</div>
-					<div className={styles.desc}>
-						<p>
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-							Mollitia, quaerat. Natus commodi exercitationem iure sunt quod
-							voluptate eius esse saepe libero. Alias, amet beatae enim minus
-							est et non ut.
-						</p>
-					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);
